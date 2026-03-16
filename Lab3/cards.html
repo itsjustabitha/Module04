@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <template id="card-template">
+    <!-- <template id="card-template">
         <div class="card">
             <div class="card-body">
                 <div class="card-title"></div>
@@ -34,13 +34,27 @@
             </div>
         </div>
     </template>
+    <div id="card-list"></div> -->
+
+<!-- Artist name template -->
+    <template id="artist-template">
+        <div class="artist-name"></div>
+    </template>
+
+    <!-- Portfolio card template -->
+    <template id="card-template">
+        <div class="card">
+            <div class="card-title"></div>
+            <img class="card-image" src="" alt="">
+        </div>
+    </template>
+
+    <div id="artist-profile"></div>
     <div id="card-list"></div>
-
-
 
     <script>
         // 1 — Creating my data array
-        const data = [{name: 'bob', age: 23}, {name: 'alice', age: 39}]
+        // const data = [{name: 'bob', age: 23}, {name: 'alice', age: 39}]
         //      const cards = [
         //     { title: 'Card One', description: 'This is the first card.' },
         //     { title: 'Card Two', description: 'This is the second card.' },
@@ -48,7 +62,7 @@
         // ];
 
         // 2 — dynamic function
-        function addCard(name, age) { //(title, description) {
+        /*function addCard(name, age) { //(title, description) {
             // clone the template
             const template =
                 document.getElementById("card-template")
@@ -76,7 +90,69 @@
             console.log(person.name);
             console.log(person.age);
             addCard(person.name, person.age);
+        }); */
+
+        // 1 — Artist data
+        const artists = [
+            {
+                name: "Van Gogh",
+                portfolio: [{
+                        title: "portrait",
+                        url: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image"
+                    },
+                {
+                    title: "sky",
+                    url: "https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-goh-worldwide-2.jpg"
+                }]
+            
+            },
+            {
+                name: "Monet",
+                portfolio: [{
+                    title: "water lilies", 
+                    url: "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg" 
+                }]
+            }
+        ];
+
+        // 2 — Function to display artist name
+        function addArtist(name) {
+            const template =
+                document.getElementById("artist-template")
+                    .content.cloneNode(true);
+
+            template.querySelector('.artist-name').innerText = name;
+
+            document.querySelector('#artist-profile')
+                .appendChild(template);
+        }
+
+        // 3 — Function to add one portfolio card
+        function addCard(title, url) {
+            const template =
+                document.getElementById("card-template")
+                    .content.cloneNode(true);
+
+            template.querySelector('.card-title').innerText = title;
+            template.querySelector('.card-image').src = url;
+            template.querySelector('.card-image').alt = title;
+
+            document.querySelector('#card-list')
+                .appendChild(template);
+        }
+
+        // 4 — Generate artist name
+        artists.forEach(function(artist) {
+            addArtist(artist.name);
+
+        // 5 — Loop through portfolio and generate cards
+        artist.portfolio.forEach(function (item) {
+            console.log(item);
+            console.log(item.title);
+            console.log(item.url);
+            addCard(item.title, item.url);
         });
+});  
     </script>
 </body>
 
