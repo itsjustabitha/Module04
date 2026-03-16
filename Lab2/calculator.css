@@ -1,0 +1,116 @@
+
+/* Fix the Body */
+.background {
+    background-color: #f7f5f3;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fix the Nav */
+.nav {
+    background-color: #4F000B;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.nav ul {
+    display: flex; /* Makes the list items sit in a row */
+    list-style: none; /* Removes bullet points */
+    margin: 0;
+    padding: 0;
+}
+
+.nav a {
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.calculator{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+#calculator td {
+    text-align: center;  
+    padding: 5px;      
+}
+
+/* FIXED: Added . to target the classes */
+.calculator-body {
+    background-color: #E2566B;
+    border: 2px solid #940031;
+    border-radius: 10px;
+    width: 300px;
+    height: 460px;
+    padding: 20px;
+}
+
+.calculator-screen {
+    background-color: #FFECD1;
+    border: 2px solid #940031;
+    border-radius: 10px;
+    width: 100%;
+    /* Changed to fill the body */
+    height: 60px;
+    /* Added height so you can see it */
+    margin-bottom: 20px;
+}
+
+.calculator-pad {
+    /* display: grid; */
+    /* This creates 4 columns of equal width */
+    /* grid-template-columns: repeat(4, 1fr); */
+    /* This creates the 10px space between buttons */
+    /* gap: 10px; */
+    padding: 20px;
+    background-color: #F27D33;
+    /* Matching your previous body color */
+    border-radius: 10px;
+    border: 2px solid #940031;
+}
+
+.calculator-pad input[type="button"] {
+    background-color: #330404;
+    color: #ffffff;
+    width:  55px;
+    height: 55px;
+    padding: 0px; /* Makes the buttons bigger and easier to click */
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;  /* Makes the mouse look like a hand when hovering */
+}
+
+/* Added a hover effect for a better UX */
+.calculator-pad input[type="button"]:hover {
+    background-color: #550606;
+}
+
+
+
+/* New Centering Wrapper for the Calculator */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Takes up most of the screen height */
+    padding-bottom: 60px; /* Space for the footer */
+}
+
+/* Ensure the footer doesn't cover content */
+.footer {
+    background-color: #4F000B;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
