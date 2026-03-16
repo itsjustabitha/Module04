@@ -75,14 +75,60 @@
             });
         }
 
-        // 4 — Run on page load
+        // // 4 — Run on page load
+        // renderNews();
+
+        // // 5 — Re-run every 5 seconds
+        // setInterval(function () {
+        //     console.log('Refreshing news...');
+        //     renderNews();
+        // }, 5000);
+
+        // 4 — Add new item to the array from form inputs
+        function addNewsToArray() {
+            // Grab input values
+            const title = document.getElementById('news-title').value;
+            const content = document.getElementById('news-content').value;
+
+            // Stop if fields are empty
+            if (!title || !content) {
+                alert('Please fill in both fields.');
+                return;
+            }
+
+            // Push new item into array
+            news.push({
+                id: news.length + 1,
+                title: title,
+                content: content
+            });
+
+            // Clear the input fields
+            document.getElementById('news-title').value = '';
+            document.getElementById('news-content').value = '';
+
+            console.log('News array updated:', news);
+
+            // Immediately refresh the screen
+            renderNews();
+        }
+
+        // 5 — Run on page load
         renderNews();
 
-        // 5 — Re-run every 5 seconds
-        setInterval(function () {
+        // 6 — Re-run every 5 seconds
+        const interval = setInterval(function() {
             console.log('Refreshing news...');
             renderNews();
         }, 5000);
+
+        // 7 — Extension: Stop the interval
+        function stopInterval() {
+            clearInterval(interval);
+            console.log('Auto-refresh stopped.');
+            alert('Auto-refresh has been stopped.');
+        }
+
 
     </script>
 
