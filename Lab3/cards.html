@@ -47,16 +47,18 @@
                 .content.cloneNode(true);
 
         // populate the template
-        template.querySelector('.card-title').innerText =
-            'My Card Title';
-        template.querySelector('.card-text').innerText =
-            'lorem ipsum ble bla';
+        template.querySelector('.card-title').innerText = title; //'My Card Title';
+        template.querySelector('.card-text').innerText = description; //'lorem ipsum ble bla';
 
         // include the populated template into the page
         document.querySelector('#card-list')
             .appendChild(template);
     }
-    addCard();
+
+        addCard('My First Card', 'This is the first description.');
+        addCard('My Second Card', 'This is the second description.');
+        addCard('My Third Card', 'This is the third description.');
+    // addCard();
 </script>
 </body>
 
