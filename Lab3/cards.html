@@ -39,27 +39,45 @@
 
 
     <script>
-    function addCard() {
-        
-        // clone the template
-        const template =
-            document.getElementById("card-template")
-                .content.cloneNode(true);
+        // 1 — Creating my data array
+        const data = [{name: 'bob', age: 23}, {name: 'alice', age: 39}]
+        //      const cards = [
+        //     { title: 'Card One', description: 'This is the first card.' },
+        //     { title: 'Card Two', description: 'This is the second card.' },
+        //     { title: 'Card Three', description: 'This is the third card.' },
+        // ];
 
-        // populate the template
-        template.querySelector('.card-title').innerText = title; //'My Card Title';
-        template.querySelector('.card-text').innerText = description; //'lorem ipsum ble bla';
+        // 2 — dynamic function
+        function addCard(name, age) { //(title, description) {
+            // clone the template
+            const template =
+                document.getElementById("card-template")
+                    .content.cloneNode(true);
+     
 
-        // include the populated template into the page
-        document.querySelector('#card-list')
-            .appendChild(template);
-    }
+            // populate the template - now dynamic.
+            //DynamicChanges based on what I pass in.
+            template.querySelector('.card-title').innerText = name; //title; //'My Card Title';
+            template.querySelector('.card-text').innerText = age; //description; //'lorem ipsum ble bla';
 
-        addCard('My First Card', 'This is the first description.');
-        addCard('My Second Card', 'This is the second description.');
-        addCard('My Third Card', 'This is the third description.');
-    // addCard();
-</script>
+            // include the populated template into the page
+            document.querySelector('#card-list')
+                .appendChild(template);
+        }
+
+        // addCard('My First Card', 'This is the first description.');
+        // addCard('My Second Card', 'This is the second description.');
+        // addCard('My Third Card', 'This is the third description.');
+        // addCard();
+
+    // 3 — Loop through array and call addCard automatically TESTING*
+        data.forEach(function(person) {
+            console.log(person);
+            console.log(person.name);
+            console.log(person.age);
+            addCard(person.name, person.age);
+        });
+    </script>
 </body>
 
 </html>
