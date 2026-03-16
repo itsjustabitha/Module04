@@ -5,32 +5,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Animations</title>
-    <style type="text/css">
+    <style>
+
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Wrapper holds all 3 elements */
+        .stage {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        /* Hello World — starts far right, slides to far left */
         p {
-            animation-name: slidein;
+            position: absolute;
+            top: 50px;
+            font-size: 2rem;
+            font-weight: bold;
+            white-space: nowrap;
+            animation-name: slide-right-to-left;
             animation-duration: 3s;
             animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
         }
 
-        @keyframes slidein {
+        @keyframes slide-right-to-left {
             from {
-                margin-left: 100%;
+                left: 100%;
             }
-
-            50% {
-                font-size: 300%;
-                margin-left: 40%;
-            }
-
             to {
-                margin-left: 0;
+                left: 0%;
             }
         }
+
+        /* Circle — starts far left, slides to far right */
+        .circle {
+            position: absolute;
+            top: 150px;
+            width: 100px;
+            height: 100px;
+            background-color: #ec4899;
+            border-radius: 50%;
+            animation-name: slide-left-to-right;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes slide-left-to-right {
+            from {
+                left: 0%;
+                background-color: #ec4899;
+            }
+            50% {
+                background-color: #f43f5e;
+            }
+            to {
+                left: calc(100% - 100px);
+                background-color: #fbbf24;
+            }
+        }
+
+        /* Square — starts far right, slides to far left */
+        .square {
+            position: absolute;
+            top: 270px;
+            width: 100px;
+            height: 100px;
+            background-color: #3b82f6;
+            border-radius: 10px;
+            animation-name: slide-right-to-left-square;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes slide-right-to-left-square {
+            from {
+                left: calc(100% - 100px);
+                background-color: #3b82f6;
+            }
+            50% {
+                background-color: #8b5cf6;
+            }
+            to {
+                left: 0%;
+                background-color: #f97316;
+            }
+        }
+
     </style>
 </head>
 
 <body>
-    <p>Hello World!</p>
+    <div class="stage">
+        <p>Hello World!</p>
+        <div class="circle"></div>
+        <div class="square"></div>
+    </div>
 </body>
 
 </html>
