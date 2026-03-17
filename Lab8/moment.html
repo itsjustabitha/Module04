@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>Lab 8 - Moment.js Extension</title>
+    <!-- Moment.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <!-- Moment Timezone CDN (needed for Task 5) -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
+</head>
+
+<body>
+    <h2>Lab 8: Moment.js Extension</h2>
+    <div id="output"></div>
+
+    <script type="text/javascript">
+        (function () {
+            let output = document.getElementById('output');
+
+            // ── TASK 1 ──────────────────────────────────────────
+            // Days between birthdate and today
+            let birthdate = moment('1993-12-07');
+            let today = moment();
+
+            let diffDays = today.diff(birthdate, 'days');
+
+            output.innerHTML += `<p><strong>Task 1:</strong> 
+                Days since birthdate: ${diffDays} days</p>`;
+
+            // ── TASK 2 ──────────────────────────────────────────
+            // Years, months, AND days breakdown
+            let duration = moment.duration(today.diff(birthdate));
+
+            let years = duration.years();
+            let months = duration.months();
+            let days = duration.days();
+
+            output.innerHTML += `<p><strong>Task 2:</strong> 
+                Age breakdown: ${years} years, ${months} months, and ${days} days</p>`;
+
+            // ── TASK 3 ──────────────────────────────────────────
+            // Which date is closest to today?
+            let dateA = moment('2025-01-01');
+            let dateB = moment('2024-06-15');
+
+            let diffA = Math.abs(today.diff(dateA, 'days'));
+            let diffB = Math.abs(today.diff(dateB, 'days'));
+
+            let closest = diffA < diffB ? dateA : dateB;
+
+            output.innerHTML += `<p><strong>Task 3:</strong> 
+                Closest date to today: ${closest.format('MMMM DD, YYYY')}</p>`;
+
+            // ── TASK 4 ──────────────────────────────────────────
+            // Is date1 before or after date2?
+            let date1 = moment('2023-03-10');
+            let date2 = moment('2024-07-22');
+
+            let comparison = date1.isBefore(date2) ? 'BEFORE' : 'AFTER';
+
+            output.innerHTML += `<p><strong>Task 4:</strong> 
+                ${date1.format('MMMM DD, YYYY')} is ${comparison} 
+                ${date2.format('MMMM DD, YYYY')}</p>`;
+
+            // ── TASK 5 ──────────────────────────────────────────
+            // Current time in London
+            let londonTime = moment().tz('Europe/London').format('MMMM DD, YYYY [at] h:mm A z');
+
+            output.innerHTML += `<p><strong>Task 5:</strong> 
+                Current time in London: ${londonTime}</p>`;
+
+        })();
+    </script>
+</body>
+
+</html>
