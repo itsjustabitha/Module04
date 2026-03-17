@@ -26,16 +26,30 @@
                 data: [0, 1, 5, 2]
             }]
         };
+
         fetch('https://fakestoreapi.com/products')
             .then((response) => response.json())
             .then((json) => {
                 console.log(json)
                 // use this JSON to find and set correct option data for the chart
+                let categoryCounts = {};
+                json.forEach(product => {
+                    let cat = product.category;
+                    if (categoryCounts[cat]) {
+                        categoryCounts[cat]++;
+                    } else {
+                        categoryCounts[cat] = 1;
+                    }
+                });
+
+                options.xAxis.data = Object.keys(categoryCounts);
+                options.series[0].data = Object.values(categoryCounts);
             })
             .then(() => {
                 // Display the chart
                 myChart.setOption(options);
             })
+
         // Initialize the echarts instance based on the prepared div
         let myChart = echarts.init(document.getElementById('main'));
     </script>
