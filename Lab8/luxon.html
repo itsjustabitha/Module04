@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <title>Luxon DateTime Formatting</title>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.5.0/build/global/luxon.min.js"></script> <!-- reference Luxon library -->
+</head>
+
+<body>
+    <h2>Luxon Date</h2>
+    <!-- container for Luxon output -->
+    <div id="displayLuxon"></div>
+
+    <!-- Lab 8 output container -->
+    <div id="output"></div>
+
+    <script type="text/javascript">
+        //         (function () {
+        //             // create a shortcut and a new Luxon date
+        //             const DateTime = luxon.DateTime;
+        //             let nowLuxon = DateTime.now();
+        //             let eDisplayLuxon =
+        //                 document.getElementById('displayLuxon');
+        //             eDisplayLuxon.innerHTML = `<p>Unformatted date:
+        // ${nowLuxon}</p>`;
+        //             let formatted = nowLuxon.toFormat('MMMM dd, yyyy');
+        //             eDisplayLuxon.innerHTML += `<p>Formatted date:
+        // ${formatted}</p>`;
+        //             let newYork =
+        //                 nowLuxon.setZone('America/New_York').toLocaleString(DateTime.
+        //                     DATETIME_FULL);
+        //             eDisplayLuxon.innerHTML += `<p>New York date:
+        // ${newYork}</p>`;
+        //         })();
+
+        (function () {
+            const DateTime = luxon.DateTime;
+            let output = document.getElementById('output');
+
+            // ── TASK 1 ──────────────────────────────────────────
+            let birthdate = DateTime.fromISO('1993-12-07');
+            let today = DateTime.now();
+            let diffDays = Math.floor(today.diff(birthdate, 'days').days);
+
+            output.innerHTML += `<p><strong>Task 1:</strong> 
+                Days since birthdate: ${diffDays} days</p>`;
+
+            // ── TASK 2 ──────────────────────────────────────────
+            let diffDetailed = today.diff(birthdate, ['years', 'months', 'days']);
+            let years = diffDetailed.years;
+            let months = diffDetailed.months;
+            let days = Math.floor(diffDetailed.days);
+
+            output.innerHTML += `<p><strong>Task 2:</strong> 
+                Age breakdown: ${years} years, ${months} months, and ${days} days</p>`;
+
+            // ── TASK 3 ──────────────────────────────────────────
+            let dateA = DateTime.fromISO('2025-01-01');
+            let dateB = DateTime.fromISO('2024-06-15');
+            let diffA = Math.abs(today.diff(dateA, 'days').days);
+            let diffB = Math.abs(today.diff(dateB, 'days').days);
+            let closest = diffA < diffB ? dateA : dateB;
+
+            output.innerHTML += `<p><strong>Task 3:</strong> 
+                Closest date to today: ${closest.toFormat('MMMM dd, yyyy')}</p>`;
+
+            // ── TASK 4 ──────────────────────────────────────────
+            let date1 = DateTime.fromISO('2023-03-10');
+            let date2 = DateTime.fromISO('2024-07-22');
+            let comparison = date1 < date2 ? 'BEFORE' : 'AFTER';
+
+            output.innerHTML += `<p><strong>Task 4:</strong> 
+                ${date1.toFormat('MMMM dd, yyyy')} is ${comparison} 
+                ${date2.toFormat('MMMM dd, yyyy')}</p>`;
+
+            // ── TASK 5 ──────────────────────────────────────────
+            let londonTime = today
+                .setZone('Europe/London')
+                .toLocaleString(DateTime.DATETIME_FULL);
+
+            output.innerHTML += `<p><strong>Task 5:</strong> 
+                Current time in London: ${londonTime}</p>`;
+
+        })();
+    </script>
+</body>
+
+</html>
